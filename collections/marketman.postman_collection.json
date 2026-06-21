@@ -1,0 +1,1023 @@
+{
+  "info": {
+    "_postman_id": "e1db0e2b-31f2-4d79-adc1-d5a83875b527",
+    "name": "MarketMan API V3",
+    "description": "MarketMan API V3 - JSON REST API for restaurant inventory and purchasing. Authenticate via Authentication > GetToken (APIKey + APIPassword) to obtain a token, set it as the authToken variable, and it is sent as the AUTH_TOKEN header on all requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "GetToken",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/auth/GetToken",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "auth",
+                "GetToken"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"APIKey\": \"{{apiKey}}\",\n  \"APIPassword\": \"{{apiPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Inventory & Items",
+      "item": [
+        {
+          "name": "GetItems",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/GetItems",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "GetItems"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemIDs\": null,\n  \"Take\": 100,\n  \"Skip\": 0,\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetInventoryItems",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/GetInventoryItems",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "GetInventoryItems"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SetInventoryCount",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/SetInventoryCount",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "SetInventoryCount"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetUOMTypes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/GetUOMTypes",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "GetUOMTypes"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vendors",
+      "item": [
+        {
+          "name": "GetVendors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/items/GetVendors",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "items",
+                "GetVendors"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Purchase Orders",
+      "item": [
+        {
+          "name": "GetOrdersByDeliveryDate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/orders/GetOrdersByDeliveryDate",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "orders",
+                "GetOrdersByDeliveryDate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetOrdersBySentDate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/orders/GetOrdersBySentDate",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "orders",
+                "GetOrdersBySentDate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetCatalogItems",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/orders/GetCatalogItems",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "orders",
+                "GetCatalogItems"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\",\n  \"VendorGuid\": \"{{vendorGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateOrder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/orders/CreateOrder",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "orders",
+                "CreateOrder"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\",\n  \"VendorGuid\": \"{{vendorGuid}}\",\n  \"OrderStatus\": \"Sent\",\n  \"deliveryDateUTC\": \"2020/05/06 00:00:00\",\n  \"sentDateUTC\": \"2020/05/06 00:00:00\",\n  \"BuyerUserGuid\": \"{{buyerUserGuid}}\",\n  \"comment\": \"Order Comment\",\n  \"catalogItems\": [ { \"CatalogItemCode\": \"3589795\", \"Quantity\": 2 } ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Invoices & Docs",
+      "item": [
+        {
+          "name": "GetDocsByDocDate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/docs/GetDocsByDocDate",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "docs",
+                "GetDocsByDocDate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DateTimeFromUTC\": \"2020/01/01 00:00:00\",\n  \"DateTimeToUTC\": \"2020/01/20 23:59:59\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SetDocsExported",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/docs/SetDocsExported",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "docs",
+                "SetDocsExported"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Deliveries",
+      "item": [
+        {
+          "name": "GetDeliveryNotesByDate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/vendors/docs/GetDeliveryNotesByDate",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "vendors",
+                "docs",
+                "GetDeliveryNotesByDate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ValidateDoc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/vendors/docs/ValidateDoc",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "vendors",
+                "docs",
+                "ValidateDoc"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SetDocs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/vendors/docs/SetDocs",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "vendors",
+                "docs",
+                "SetDocs"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Recipes & Menu Profitability",
+      "item": [
+        {
+          "name": "GetMenuItems",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/GetMenuItems",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "GetMenuItems"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"GetDeleted\": false,\n  \"itemIDs\": null,\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetMenuItemsAvailability",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/GetMenuItemsAvailability",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "GetMenuItemsAvailability"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetMenuProfitability",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/inventory/GetMenuProfitability",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "inventory",
+                "GetMenuProfitability"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "CreateWebhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/webhooks/CreateWebhook",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "webhooks",
+                "CreateWebhook"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Type\": \"Order create\",\n  \"URL\": \"https://example.com/webhook\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetWebhooks",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/webhooks/GetWebhooks",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "webhooks",
+                "GetWebhooks"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetWebhookEventByOrder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/webhooks/GetWebhookEventByOrder",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "webhooks",
+                "GetWebhookEventByOrder"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteWebhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "AUTH_TOKEN",
+                "value": "{{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.marketman.com/v3/buyers/webhooks/DeleteWebhook",
+              "protocol": "https",
+              "host": [
+                "api",
+                "marketman",
+                "com"
+              ],
+              "path": [
+                "v3",
+                "buyers",
+                "webhooks",
+                "DeleteWebhook"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\",\n  \"Guid\": \"57ea26e8aac54e73a18307e6da55e6ef\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.marketman.com/v3"
+    },
+    {
+      "key": "apiKey",
+      "value": ""
+    },
+    {
+      "key": "apiPassword",
+      "value": ""
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    },
+    {
+      "key": "buyerGuid",
+      "value": ""
+    },
+    {
+      "key": "vendorGuid",
+      "value": ""
+    },
+    {
+      "key": "buyerUserGuid",
+      "value": ""
+    }
+  ]
+}

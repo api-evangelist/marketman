@@ -1,0 +1,688 @@
+openapi: 3.0.1
+info:
+  title: MarketMan API V3
+  description: >-
+    MarketMan provides a JSON REST API for integration with third-party
+    applications such as accounting, ERP, e-commerce, and self-service portals.
+    The V3 API exposes separate Buyer and Vendor surfaces for inventory, items,
+    vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing,
+    POS sales, and webhooks. All operations are HTTP POST that accept and return
+    JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the
+    vendor equivalent) with an APIKey and APIPassword to obtain a Token, then
+    send that token on every subsequent request in the AUTH_TOKEN header.
+    Endpoints, request fields, and response shapes here reflect the publicly
+    published MarketMan API V3 Postman documentation; field-level detail not
+    documented publicly is left unconstrained.
+  termsOfService: https://www.marketman.com/
+  contact:
+    name: MarketMan
+    url: https://www.marketman.com/
+  version: '3.0'
+servers:
+  - url: https://api.marketman.com/v3
+    description: MarketMan API V3 production base URL
+security:
+  - AuthToken: []
+tags:
+  - name: Authentication
+    description: Token acquisition and token status.
+  - name: Accounts
+    description: Authorised buyer accounts and connected POS systems.
+  - name: Inventory
+    description: Inventory items, counts, transfers, waste, and UOM types.
+  - name: Items
+    description: Vendors connected to a buyer account.
+  - name: Recipes
+    description: Menu items, availability, and menu profitability.
+  - name: Orders
+    description: Purchase orders and vendor catalog items.
+  - name: Docs
+    description: Invoices and accounting documents.
+  - name: Deliveries
+    description: Vendor delivery notes and document submission.
+  - name: Webhooks
+    description: Webhook subscriptions for order and account events.
+paths:
+  /buyers/auth/GetToken:
+    post:
+      operationId: getToken
+      tags:
+        - Authentication
+      summary: Obtain an access token
+      description: >-
+        Exchanges an APIKey and APIPassword for an access Token used in the
+        AUTH_TOKEN header on all subsequent requests.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTokenRequest'
+      responses:
+        '200':
+          description: Authentication result with a token on success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTokenResponse'
+  /buyers/auth/GetTokenDetails:
+    post:
+      operationId: getTokenDetails
+      tags:
+        - Authentication
+      summary: Get details about the current token
+      responses:
+        '200':
+          description: Token details.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/partneraccounts/GetAuthorisedAccounts:
+    post:
+      operationId: getAuthorisedAccounts
+      tags:
+        - Accounts
+      summary: List authorised buyer accounts
+      description: >-
+        Returns the buyer accounts (each identified by a Guid) that the
+        authenticated API credentials may operate on.
+      responses:
+        '200':
+          description: Authorised accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorisedAccountsResponse'
+  /buyers/inventory/GetItems:
+    post:
+      operationId: getItems
+      tags:
+        - Inventory
+      summary: Get catalog/inventory items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetItemsRequest'
+      responses:
+        '200':
+          description: Inventory items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItemsResponse'
+  /buyers/inventory/GetInventoryItems:
+    post:
+      operationId: getInventoryItems
+      tags:
+        - Inventory
+      summary: Get inventory items for a buyer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Inventory items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItemsResponse'
+  /buyers/inventory/SetInventoryCount:
+    post:
+      operationId: setInventoryCount
+      tags:
+        - Inventory
+      summary: Submit an inventory count
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Result of the count submission.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /buyers/inventory/GetUOMTypes:
+    post:
+      operationId: getUOMTypes
+      tags:
+        - Inventory
+      summary: Get units of measure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Units of measure.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/items/GetVendors:
+    post:
+      operationId: getVendors
+      tags:
+        - Items
+      summary: Get vendors connected to a buyer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Vendors connected to the buyer account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorsResponse'
+  /buyers/inventory/GetMenuItems:
+    post:
+      operationId: getMenuItems
+      tags:
+        - Recipes
+      summary: Get menu items (recipes)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMenuItemsRequest'
+      responses:
+        '200':
+          description: Menu items.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/inventory/GetMenuItemsAvailability:
+    post:
+      operationId: getMenuItemsAvailability
+      tags:
+        - Recipes
+      summary: Get menu item availability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Menu item availability.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/inventory/GetMenuProfitability:
+    post:
+      operationId: getMenuProfitability
+      tags:
+        - Recipes
+      summary: Get menu profitability report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Menu profitability data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/GetOrdersByDeliveryDate:
+    post:
+      operationId: getOrdersByDeliveryDate
+      tags:
+        - Orders
+      summary: Get purchase orders by delivery date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Orders within the delivery date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/GetOrdersBySentDate:
+    post:
+      operationId: getOrdersBySentDate
+      tags:
+        - Orders
+      summary: Get purchase orders by sent date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Orders within the sent date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/GetCatalogItems:
+    post:
+      operationId: getCatalogItems
+      tags:
+        - Orders
+      summary: Get a vendor catalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogItemsRequest'
+      responses:
+        '200':
+          description: Catalog items for a vendor.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/CreateOrder:
+    post:
+      operationId: createOrder
+      tags:
+        - Orders
+      summary: Create a purchase order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '200':
+          description: Result of the order creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /buyers/docs/GetDocsByDocDate:
+    post:
+      operationId: getDocsByDocDate
+      tags:
+        - Docs
+      summary: Get invoices/documents by document date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Documents within the date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/docs/SetDocsExported:
+    post:
+      operationId: setDocsExported
+      tags:
+        - Docs
+      summary: Mark documents as exported
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Result of the export-flag update.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /vendors/docs/GetDeliveryNotesByDate:
+    post:
+      operationId: getDeliveryNotesByDate
+      tags:
+        - Deliveries
+      summary: Get delivery notes by date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Delivery notes within the date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /vendors/docs/ValidateDoc:
+    post:
+      operationId: validateDoc
+      tags:
+        - Deliveries
+      summary: Validate a delivery/invoice document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Validation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /vendors/docs/SetDocs:
+    post:
+      operationId: setDocs
+      tags:
+        - Deliveries
+      summary: Submit delivery/invoice documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Result of the document submission.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /buyers/webhooks/CreateWebhook:
+    post:
+      operationId: createWebhook
+      tags:
+        - Webhooks
+      summary: Create a webhook subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhookRequest'
+      responses:
+        '200':
+          description: Result of the webhook creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /buyers/webhooks/GetWebhooks:
+    post:
+      operationId: getWebhooks
+      tags:
+        - Webhooks
+      summary: List webhook subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/webhooks/GetWebhookEventByOrder:
+    post:
+      operationId: getWebhookEventByOrder
+      tags:
+        - Webhooks
+      summary: Get webhook events by order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Webhook events for the order.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/webhooks/DeleteWebhook:
+    post:
+      operationId: deleteWebhook
+      tags:
+        - Webhooks
+      summary: Delete a webhook subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteWebhookRequest'
+      responses:
+        '200':
+          description: Result of the webhook deletion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: AUTH_TOKEN
+      description: >-
+        Access token returned by GetToken, sent on every authenticated request
+        in the AUTH_TOKEN header.
+  schemas:
+    GetTokenRequest:
+      type: object
+      required:
+        - APIKey
+        - APIPassword
+      properties:
+        APIKey:
+          type: string
+          description: API key issued by MarketMan support.
+        APIPassword:
+          type: string
+          description: API password issued by MarketMan support.
+    GetTokenResponse:
+      type: object
+      properties:
+        Token:
+          type: string
+          description: Access token to send in the AUTH_TOKEN header.
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type: string
+          nullable: true
+    BuyerRequest:
+      type: object
+      required:
+        - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+    GetItemsRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          properties:
+            itemIDs:
+              type: array
+              items:
+                type: string
+              nullable: true
+            Take:
+              type: integer
+            Skip:
+              type: integer
+    GetMenuItemsRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          properties:
+            GetDeleted:
+              type: boolean
+            itemIDs:
+              type: array
+              items:
+                type: string
+              nullable: true
+    DateRangeRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          required:
+            - DateTimeFromUTC
+            - DateTimeToUTC
+          properties:
+            DateTimeFromUTC:
+              type: string
+              description: Start of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+              example: '2025/02/18 00:00:00'
+            DateTimeToUTC:
+              type: string
+              description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+              example: '2025/02/20 23:59:59'
+    CatalogItemsRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          required:
+            - VendorGuid
+          properties:
+            VendorGuid:
+              type: string
+              description: GUID identifying the vendor whose catalog to retrieve.
+    CreateOrderRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          required:
+            - VendorGuid
+            - catalogItems
+          properties:
+            VendorGuid:
+              type: string
+            OrderStatus:
+              type: string
+              example: Sent
+            deliveryDateUTC:
+              type: string
+              example: '2020/05/06 00:00:00'
+            sentDateUTC:
+              type: string
+              example: '2020/05/06 00:00:00'
+            BuyerUserGuid:
+              type: string
+            comment:
+              type: string
+            catalogItems:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderCatalogItem'
+    OrderCatalogItem:
+      type: object
+      properties:
+        CatalogItemCode:
+          type: string
+        Quantity:
+          type: number
+    CreateWebhookRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          required:
+            - Type
+            - URL
+          properties:
+            Type:
+              type: string
+              description: Event type to subscribe to, e.g. "Order create".
+              example: Order create
+            URL:
+              type: string
+              description: Destination URL that will receive webhook payloads.
+    DeleteWebhookRequest:
+      allOf:
+        - $ref: '#/components/schemas/BuyerRequest'
+        - type: object
+          required:
+            - Guid
+          properties:
+            Guid:
+              type: string
+              description: GUID of the webhook to delete.
+    AuthorisedAccountsResponse:
+      type: object
+      properties:
+        Buyers:
+          type: array
+          items:
+            type: object
+            properties:
+              Guid:
+                type: string
+              Name:
+                type: string
+        IsSuccess:
+          type: boolean
+    InventoryItemsResponse:
+      type: object
+      properties:
+        InventoryItems:
+          type: array
+          items:
+            type: object
+        IsSuccess:
+          type: boolean
+    VendorsResponse:
+      type: object
+      properties:
+        Vendors:
+          type: array
+          items:
+            type: object
+        IsSuccess:
+          type: boolean
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type: string
+          nullable: true

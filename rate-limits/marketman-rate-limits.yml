@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: MarketMan
+providerId: marketman
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- Inventory
+- Purchasing
+- Supply Chain
+- Food Service
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  MarketMan's published API V3 documentation does not specify numeric rate
+  limits, quotas, or throttling thresholds. The API is token-authenticated
+  (AUTH_TOKEN header obtained via GetToken) and provides asynchronous variants
+  for some heavy write operations (e.g. SetSalesAsync, CreateChecksAsync,
+  SetPriceLevelAsync) along with an async token status endpoint, which implies
+  server-side throttling and queuing for large jobs. Specific limits are not
+  reconciled in this artifact and should be confirmed with MarketMan.
+notes: >-
+  No public rate-limit table is documented. Verify request ceilings, token
+  lifetime, and async job constraints with MarketMan support during
+  reconciliation. Use the async endpoints for bulk sales/menu/price writes.
+sources:
+- https://api-doc.marketman.com/
+- https://www.marketman.com/
+responseCodes:
+  throttled: see provider documentation
+limits:
+- name: Per-Account Request Limit
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No published per-minute or per-day request ceiling; assumed to exist server-side.
+- name: Token Lifetime
+  scope: account
+  metric: token
+  limit: see provider documentation
+  notes: Tokens are obtained via GetToken; expiry/refresh cadence is not publicly documented.
+- name: Async Job Throughput
+  scope: account
+  metric: jobs
+  limit: see provider documentation
+  notes: Bulk writes are queued via *Async endpoints and polled via GetAsyncTokenStatus.
+policies:
+- name: Async Bulk Processing
+  description: Use SetSalesAsync, CreateChecksAsync, SetPosMenuItemsAsync, and SetPriceLevelAsync for large payloads; poll status rather than blocking.
+- name: Backoff Strategy
+  description: Clients should implement retries with exponential backoff and jitter pending documented limits.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

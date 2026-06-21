@@ -1,0 +1,80 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: MarketMan
+providerId: marketman
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- Inventory
+- Purchasing
+- Supply Chain
+- Food Service
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of MarketMan spend. MarketMan is a fixed-fee SaaS subscription
+  (Starter / Growth / Enterprise tiers) rather than a usage-metered API, so
+  cost management centers on subscription tier selection, number of locations
+  and users, and invoice-scan allowance rather than per-call API billing. The
+  API itself is bundled with the platform subscription. Because pricing is
+  sales-led and not fully published, the billing detail here is not reconciled.
+notes: >-
+  Subscription pricing and inclusions are determined during sales. Confirm
+  per-location and per-user costs, overage handling for invoice scans, and
+  whether API access carries any incremental fee during reconciliation.
+sources:
+- https://www.marketman.com/pricing-for-restaurant-inventory-management-system
+- https://www.marketman.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: MarketMan
+serviceCategory: Management and Governance
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+meters:
+- name: subscription_fee
+  description: Recurring monthly subscription fee for the selected MarketMan plan tier.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: locations
+  description: Number of restaurant locations/units under the account, a common pricing driver.
+  unit: locations
+  aggregation: sum
+  dimensions:
+  - account
+- name: invoice_scans
+  description: Invoice scans consumed against the plan allowance (capped on Starter, unlimited on Growth+).
+  unit: scans
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+principles:
+- name: Visibility
+  description: Track subscription tier, location count, and user count against the contracted plan.
+- name: Allocation
+  description: Map MarketMan subscription cost to restaurant locations / cost centers.
+- name: Optimization
+  description: Right-size the plan tier to actual invoice-scan and automation needs; avoid over-provisioning unlimited tiers for low-volume sites.
+- name: Accountability
+  description: Assign an owner for the MarketMan contract and review tier fit at renewal.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

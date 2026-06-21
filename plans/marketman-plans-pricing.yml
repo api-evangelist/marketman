@@ -1,0 +1,130 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: MarketMan
+providerId: marketman
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- Inventory
+- Purchasing
+- Supply Chain
+- Food Service
+- Plans
+description: >-
+  MarketMan is sold as a SaaS subscription for restaurants and restaurant
+  groups, not as a metered/pay-as-you-go API product. Pricing is sales-led
+  and tier-based, with the API made available as part of the platform
+  subscription. Publicly referenced tiers start with a Starter plan, a
+  Growth plan, and a custom-quoted Enterprise plan; the primary documented
+  differentiator is invoice-scan volume and access to advanced automation
+  (vendor management, real-time recipe costing). Exact entitlements,
+  per-seat/per-location pricing, and any API access constraints are
+  determined during sales and are not fully published, so this artifact is
+  not reconciled.
+notes: >-
+  Prices below reflect figures published on third-party pricing summaries and
+  the MarketMan pricing page at the time of research and may not be current.
+  Confirm plan inclusions, API access, and current pricing with MarketMan
+  sales during reconciliation.
+sources:
+- https://www.marketman.com/pricing-for-restaurant-inventory-management-system
+- https://www.marketman.com/
+- https://api-doc.marketman.com/
+plans:
+- id: marketman-starter
+  name: Starter
+  type: subscription
+  description: >-
+    Entry restaurant inventory and purchasing plan with a capped monthly
+    invoice-scan allowance.
+  entries:
+  - label: Starter Subscription
+    name: starter
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $199/month (verify with sales)
+    userMultiplied: false
+  - label: Invoice Scans
+    name: invoice_scans
+    type: usage
+    metric: scans
+    limit: 50
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Inventory Management
+  - name: Purchasing & Orders
+  - name: Vendor Management
+  - name: API Access
+- id: marketman-growth
+  name: Growth
+  type: subscription
+  description: >-
+    Mid-tier plan adding unlimited invoice scanning and advanced automation
+    such as automatic vendor management and real-time recipe costing.
+  entries:
+  - label: Growth Subscription
+    name: growth
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $249/month (verify with sales)
+    userMultiplied: false
+  - label: Invoice Scans
+    name: invoice_scans
+    type: usage
+    metric: scans
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: unlimited
+    userMultiplied: false
+  elements:
+  - name: Inventory Management
+  - name: Purchasing & Orders
+  - name: Automatic Vendor Management
+  - name: Real-Time Recipe Costing
+  - name: Menu Profitability
+  - name: API Access
+  - name: Webhooks
+- id: marketman-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom-quoted plan for multi-unit operators, commissaries, and restaurant
+    groups with advanced reporting, integrations, and support.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Multi-Unit & Commissary
+  - name: Advanced Reporting
+  - name: Accounting / ERP Integrations
+  - name: API Access
+  - name: Webhooks
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

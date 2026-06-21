@@ -1,0 +1,94 @@
+aid: marketman
+name: MarketMan
+review:
+  question: Does MarketMan expose a documented public WebSocket or event-streaming API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. MarketMan publishes no WebSocket
+    (ws://, wss://) or HTTP Server-Sent Events (SSE) streaming surface. Its
+    only event mechanism is outbound HTTP webhooks (Order create and related
+    events), which are point-in-time HTTP callbacks managed via REST endpoints
+    rather than a persistent streaming protocol, so no AsyncAPI artifact was
+    created under current API Evangelist scope.
+findings:
+  summary: |
+    MarketMan exposes a single JSON REST API (V3) over HTTPS at
+    https://api.marketman.com/v3 with separate /buyers and /vendors surfaces.
+    Every documented operation is an HTTP POST that accepts and returns JSON.
+    Authentication is token-based: POST /v3/buyers/auth/GetToken with an APIKey
+    and APIPassword returns a Token, sent on subsequent requests in the
+    AUTH_TOKEN header. There is no documented WebSocket, gRPC, GraphQL, or SSE
+    interface. Asynchronous behavior exists only for bulk writes via *Async
+    endpoints polled through GetAsyncTokenStatus, and event delivery is handled
+    by outbound HTTP webhooks (CreateWebhook / GetWebhooks / DeleteWebhook /
+    GetWebhookEventByOrder) on both buyer and vendor sides.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.marketman.com/v3
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP callbacks for order events; managed via REST webhook endpoints. Not a streaming/WebSocket transport.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the MarketMan API V3 documentation.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming is documented.
+  endpointsConfirmedRest:
+    - POST https://api.marketman.com/v3/buyers/auth/GetToken
+    - POST https://api.marketman.com/v3/buyers/auth/GetTokenDetails
+    - POST https://api.marketman.com/v3/buyers/asynctokens/GetAsyncTokenStatus
+    - POST https://api.marketman.com/v3/buyers/partneraccounts/GetAuthorisedAccounts
+    - POST https://api.marketman.com/v3/buyers/inventory/GetItems
+    - POST https://api.marketman.com/v3/buyers/inventory/GetInventoryItems
+    - POST https://api.marketman.com/v3/buyers/inventory/SetInventoryCount
+    - POST https://api.marketman.com/v3/buyers/inventory/GetUOMTypes
+    - POST https://api.marketman.com/v3/buyers/inventory/GetMenuItems
+    - POST https://api.marketman.com/v3/buyers/inventory/GetMenuItemsAvailability
+    - POST https://api.marketman.com/v3/buyers/inventory/GetMenuProfitability
+    - POST https://api.marketman.com/v3/buyers/items/GetVendors
+    - POST https://api.marketman.com/v3/buyers/orders/GetOrdersByDeliveryDate
+    - POST https://api.marketman.com/v3/buyers/orders/GetOrdersBySentDate
+    - POST https://api.marketman.com/v3/buyers/orders/GetCatalogItems
+    - POST https://api.marketman.com/v3/buyers/orders/CreateOrder
+    - POST https://api.marketman.com/v3/buyers/docs/GetDocsByDocDate
+    - POST https://api.marketman.com/v3/buyers/docs/SetDocsExported
+    - POST https://api.marketman.com/v3/buyers/webhooks/CreateWebhook
+    - POST https://api.marketman.com/v3/buyers/webhooks/GetWebhooks
+    - POST https://api.marketman.com/v3/buyers/webhooks/GetWebhookEventByOrder
+    - POST https://api.marketman.com/v3/buyers/webhooks/DeleteWebhook
+    - POST https://api.marketman.com/v3/vendors/docs/GetDeliveryNotesByDate
+    - POST https://api.marketman.com/v3/vendors/docs/ValidateDoc
+    - POST https://api.marketman.com/v3/vendors/docs/SetDocs
+    - POST https://api.marketman.com/v3/vendors/webhooks/CreateWebhook
+    - POST https://api.marketman.com/v3/vendors/webhooks/GetWebhooks
+    - POST https://api.marketman.com/v3/vendors/webhooks/DeleteWebhook
+sources:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+    note: Official MarketMan API V3 documentation (Postman documenter); all operations are HTTPS POST returning JSON.
+  - url: https://www.postman.com/marketmanapi/marketmanapi-s-public-workspace/collection/ha0kn6v/marketman-api-v3
+    type: APIReference
+    note: Public MarketMan API V3 Postman collection enumerating buyer and vendor endpoints.
+  - url: https://github.com/LukasKlement/python-marketman
+    type: SDK
+    note: Third-party Python client confirming base URL, GetToken auth, and AUTH_TOKEN header usage.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE streaming surface exists, so no AsyncAPI document was
+    authored. The REST surface and webhook management endpoints are captured in
+    openapi/marketman-openapi.yml and reflected in apis.yml; webhooks are
+    documented as outbound HTTP callbacks rather than a streaming protocol.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

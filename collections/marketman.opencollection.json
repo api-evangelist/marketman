@@ -1,0 +1,411 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarketMan API V3",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTH_TOKEN",
+      "value": "{{authToken}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/auth/GetToken",
+            "body": {
+              "type": "json",
+              "data": "{ \"APIKey\": \"{{apiKey}}\", \"APIPassword\": \"{{apiPassword}}\" }"
+            }
+          },
+          "docs": "Exchange APIKey and APIPassword for an access Token used in the AUTH_TOKEN header."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory & Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetItems",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"itemIDs\": null,\n  \"Take\": 100,\n  \"Skip\": 0,\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetItems"
+        },
+        {
+          "info": {
+            "name": "GetInventoryItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetInventoryItems",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetInventoryItems"
+        },
+        {
+          "info": {
+            "name": "SetInventoryCount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/SetInventoryCount",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "SetInventoryCount"
+        },
+        {
+          "info": {
+            "name": "GetUOMTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetUOMTypes",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetUOMTypes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vendors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetVendors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/items/GetVendors",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetVendors"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Purchase Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetOrdersByDeliveryDate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/GetOrdersByDeliveryDate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetOrdersByDeliveryDate"
+        },
+        {
+          "info": {
+            "name": "GetOrdersBySentDate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/GetOrdersBySentDate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetOrdersBySentDate"
+        },
+        {
+          "info": {
+            "name": "GetCatalogItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/GetCatalogItems",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\",\n  \"VendorGuid\": \"{{vendorGuid}}\"\n}"
+            }
+          },
+          "docs": "GetCatalogItems"
+        },
+        {
+          "info": {
+            "name": "CreateOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/CreateOrder",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\",\n  \"VendorGuid\": \"{{vendorGuid}}\",\n  \"OrderStatus\": \"Sent\",\n  \"deliveryDateUTC\": \"2020/05/06 00:00:00\",\n  \"sentDateUTC\": \"2020/05/06 00:00:00\",\n  \"BuyerUserGuid\": \"{{buyerUserGuid}}\",\n  \"comment\": \"Order Comment\",\n  \"catalogItems\": [ { \"CatalogItemCode\": \"3589795\", \"Quantity\": 2 } ]\n}"
+            }
+          },
+          "docs": "CreateOrder"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Invoices & Docs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetDocsByDocDate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/docs/GetDocsByDocDate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"DateTimeFromUTC\": \"2020/01/01 00:00:00\",\n  \"DateTimeToUTC\": \"2020/01/20 23:59:59\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetDocsByDocDate"
+        },
+        {
+          "info": {
+            "name": "SetDocsExported",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/docs/SetDocsExported",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "SetDocsExported"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deliveries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetDeliveryNotesByDate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/vendors/docs/GetDeliveryNotesByDate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\"\n}"
+            }
+          },
+          "docs": "GetDeliveryNotesByDate"
+        },
+        {
+          "info": {
+            "name": "ValidateDoc",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/vendors/docs/ValidateDoc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ValidateDoc"
+        },
+        {
+          "info": {
+            "name": "SetDocs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/vendors/docs/SetDocs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "SetDocs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipes & Menu Profitability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetMenuItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetMenuItems",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"GetDeleted\": false,\n  \"itemIDs\": null,\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetMenuItems"
+        },
+        {
+          "info": {
+            "name": "GetMenuItemsAvailability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetMenuItemsAvailability",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetMenuItemsAvailability"
+        },
+        {
+          "info": {
+            "name": "GetMenuProfitability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetMenuProfitability",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetMenuProfitability"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CreateWebhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/webhooks/CreateWebhook",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"Type\": \"Order create\",\n  \"URL\": \"https://example.com/webhook\",\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "CreateWebhook"
+        },
+        {
+          "info": {
+            "name": "GetWebhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/webhooks/GetWebhooks",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetWebhooks"
+        },
+        {
+          "info": {
+            "name": "GetWebhookEventByOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/webhooks/GetWebhookEventByOrder",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\"\n}"
+            }
+          },
+          "docs": "GetWebhookEventByOrder"
+        },
+        {
+          "info": {
+            "name": "DeleteWebhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/webhooks/DeleteWebhook",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"BuyerGuid\": \"{{buyerGuid}}\",\n  \"Guid\": \"57ea26e8aac54e73a18307e6da55e6ef\"\n}"
+            }
+          },
+          "docs": "DeleteWebhook"
+        }
+      ]
+    }
+  ]
+}

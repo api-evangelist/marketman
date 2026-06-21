@@ -1,0 +1,181 @@
+aid: marketman
+url: https://raw.githubusercontent.com/api-evangelist/marketman/refs/heads/main/apis.yml
+name: MarketMan
+kind: company
+description: MarketMan is a cloud-based restaurant inventory and purchasing management
+  platform (part of the Meal Ticket portfolio) for back-of-house operations - inventory
+  counts, supplier catalogs, purchase orders, deliveries, invoices, recipes/menu costing,
+  and POS sales. The MarketMan API V3 is a JSON REST API with separate Buyer and Vendor
+  surfaces, token authentication, and webhooks for order events.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Restaurant
+- Inventory
+- Purchasing
+- Supply Chain
+- Food Service
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: marketman:inventory-items-api
+  name: MarketMan Inventory & Items API
+  tags:
+  - Inventory
+  - Items
+  - Menu Items
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Buyer inventory endpoints for retrieving items, preps, inventory items,
+    menu items and UOM types, setting inventory counts, and reading transfers, waste
+    events, and production events.
+- aid: marketman:vendors-api
+  name: MarketMan Vendors API
+  tags:
+  - Vendors
+  - Suppliers
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Buyer endpoint for listing the vendors (suppliers) connected to an account,
+    plus the vendor-side products, assortments, price levels, and customers surfaces
+    used by suppliers integrating with MarketMan.
+- aid: marketman:purchase-orders-api
+  name: MarketMan Purchase Orders API
+  tags:
+  - Purchase Orders
+  - Orders
+  - Procurement
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Buyer orders endpoints to read orders by delivery date or sent date,
+    list vendor catalog items, and create purchase orders against a vendor catalog.
+- aid: marketman:invoices-docs-api
+  name: MarketMan Invoices & Docs API
+  tags:
+  - Invoices
+  - Documents
+  - Accounting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Buyer docs endpoints to retrieve invoices and accounting documents by
+    document date and to mark documents as exported for downstream accounting/ERP
+    reconciliation.
+- aid: marketman:deliveries-api
+  name: MarketMan Deliveries API
+  tags:
+  - Deliveries
+  - Delivery Notes
+  - Receiving
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Vendor-side delivery note endpoints (GetDeliveryNotesByDate, ValidateDoc,
+    SetDocs) used to submit and retrieve delivery documents tied to fulfilled orders.
+- aid: marketman:recipes-menu-profitability-api
+  name: MarketMan Recipes & Menu Profitability API
+  tags:
+  - Recipes
+  - Menu Costing
+  - Profitability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Menu and recipe costing endpoints - menu items, menu item availability,
+    and menu profitability reporting - that surface recipe-driven food cost and margin
+    data for an account.
+- aid: marketman:webhooks-api
+  name: MarketMan Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api-doc.marketman.com/
+  baseURL: https://api.marketman.com/v3
+  properties:
+  - url: https://api-doc.marketman.com/
+    type: Documentation
+  - url: openapi/marketman-openapi.yml
+    type: OpenAPI
+  - url: collections/marketman.postman_collection.json
+    type: PostmanCollection
+  - url: collections/marketman.opencollection.json
+    type: OpenCollection
+  description: Buyer and vendor webhook management - create, list, and delete webhooks
+    and look up webhook events by order - to subscribe to order-create and related
+    events.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/marketman
+- type: Website
+  url: https://www.marketman.com
+- type: Documentation
+  url: https://api-doc.marketman.com/
+- type: Plans
+  url: plans/marketman-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/marketman-rate-limits.yml
+- type: FinOps
+  url: finops/marketman-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
