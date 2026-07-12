@@ -164,6 +164,10 @@ apis:
     and look up webhook events by order - to subscribe to order-create and related
     events.
 common:
+- type: DomainSecurity
+  url: security/marketman-domain-security.yml
+- type: Authentication
+  url: authentication/marketman-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/marketman
 - type: Website
@@ -176,6 +180,8 @@ common:
   url: rate-limits/marketman-rate-limits.yml
 - type: FinOps
   url: finops/marketman-finops.yml
+- url: https://www.marketman.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
