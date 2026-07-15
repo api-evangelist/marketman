@@ -164,6 +164,8 @@ apis:
     and look up webhook events by order - to subscribe to order-create and related
     events.
 common:
+- type: AgenticAccess
+  url: agentic-access/marketman-agentic-access.yml
 - type: DomainSecurity
   url: security/marketman-domain-security.yml
 - type: Authentication
