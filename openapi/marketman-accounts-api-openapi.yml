@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: MarketMan API V3 Accounts API
+  description: 'MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.'
+  termsOfService: https://www.marketman.com/
+  contact:
+    name: MarketMan
+    url: https://www.marketman.com/
+  version: '3.0'
+servers:
+- url: https://api.marketman.com/v3
+  description: MarketMan API V3 production base URL
+security:
+- AuthToken: []
+tags:
+- name: Accounts
+  description: Authorised buyer accounts and connected POS systems.
+paths:
+  /buyers/partneraccounts/GetAuthorisedAccounts:
+    post:
+      operationId: getAuthorisedAccounts
+      tags:
+      - Accounts
+      summary: List authorised buyer accounts
+      description: Returns the buyer accounts (each identified by a Guid) that the authenticated API credentials may operate on.
+      responses:
+        '200':
+          description: Authorised accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorisedAccountsResponse'
+components:
+  schemas:
+    AuthorisedAccountsResponse:
+      type: object
+      properties:
+        Buyers:
+          type: array
+          items:
+            type: object
+            properties:
+              Guid:
+                type: string
+              Name:
+                type: string
+        IsSuccess:
+          type: boolean
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: AUTH_TOKEN
+      description: Access token returned by GetToken, sent on every authenticated request in the AUTH_TOKEN header.

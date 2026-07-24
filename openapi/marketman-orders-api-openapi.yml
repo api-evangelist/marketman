@@ -1,0 +1,178 @@
+openapi: 3.0.1
+info:
+  title: MarketMan API V3 Accounts Orders API
+  description: 'MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.'
+  termsOfService: https://www.marketman.com/
+  contact:
+    name: MarketMan
+    url: https://www.marketman.com/
+  version: '3.0'
+servers:
+- url: https://api.marketman.com/v3
+  description: MarketMan API V3 production base URL
+security:
+- AuthToken: []
+tags:
+- name: Orders
+  description: Purchase orders and vendor catalog items.
+paths:
+  /buyers/orders/GetOrdersByDeliveryDate:
+    post:
+      operationId: getOrdersByDeliveryDate
+      tags:
+      - Orders
+      summary: Get purchase orders by delivery date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Orders within the delivery date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/GetOrdersBySentDate:
+    post:
+      operationId: getOrdersBySentDate
+      tags:
+      - Orders
+      summary: Get purchase orders by sent date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Orders within the sent date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/GetCatalogItems:
+    post:
+      operationId: getCatalogItems
+      tags:
+      - Orders
+      summary: Get a vendor catalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogItemsRequest'
+      responses:
+        '200':
+          description: Catalog items for a vendor.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/orders/CreateOrder:
+    post:
+      operationId: createOrder
+      tags:
+      - Orders
+      summary: Create a purchase order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '200':
+          description: Result of the order creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    CreateOrderRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - VendorGuid
+        - catalogItems
+        properties:
+          VendorGuid:
+            type: string
+          OrderStatus:
+            type: string
+            example: Sent
+          deliveryDateUTC:
+            type: string
+            example: 2020/05/06 00:00:00
+          sentDateUTC:
+            type: string
+            example: 2020/05/06 00:00:00
+          BuyerUserGuid:
+            type: string
+          comment:
+            type: string
+          catalogItems:
+            type: array
+            items:
+              $ref: '#/components/schemas/OrderCatalogItem'
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type: string
+          nullable: true
+    OrderCatalogItem:
+      type: object
+      properties:
+        CatalogItemCode:
+          type: string
+        Quantity:
+          type: number
+    CatalogItemsRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - VendorGuid
+        properties:
+          VendorGuid:
+            type: string
+            description: GUID identifying the vendor whose catalog to retrieve.
+    DateRangeRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - DateTimeFromUTC
+        - DateTimeToUTC
+        properties:
+          DateTimeFromUTC:
+            type: string
+            description: Start of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+            example: 2025/02/18 00:00:00
+          DateTimeToUTC:
+            type: string
+            description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+            example: 2025/02/20 23:59:59
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: AUTH_TOKEN
+      description: Access token returned by GetToken, sent on every authenticated request in the AUTH_TOKEN header.

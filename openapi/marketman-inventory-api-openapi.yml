@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: MarketMan API V3 Accounts Inventory API
+  description: 'MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.'
+  termsOfService: https://www.marketman.com/
+  contact:
+    name: MarketMan
+    url: https://www.marketman.com/
+  version: '3.0'
+servers:
+- url: https://api.marketman.com/v3
+  description: MarketMan API V3 production base URL
+security:
+- AuthToken: []
+tags:
+- name: Inventory
+  description: Inventory items, counts, transfers, waste, and UOM types.
+paths:
+  /buyers/inventory/GetItems:
+    post:
+      operationId: getItems
+      tags:
+      - Inventory
+      summary: Get catalog/inventory items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetItemsRequest'
+      responses:
+        '200':
+          description: Inventory items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItemsResponse'
+  /buyers/inventory/GetInventoryItems:
+    post:
+      operationId: getInventoryItems
+      tags:
+      - Inventory
+      summary: Get inventory items for a buyer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Inventory items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItemsResponse'
+  /buyers/inventory/SetInventoryCount:
+    post:
+      operationId: setInventoryCount
+      tags:
+      - Inventory
+      summary: Submit an inventory count
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Result of the count submission.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /buyers/inventory/GetUOMTypes:
+    post:
+      operationId: getUOMTypes
+      tags:
+      - Inventory
+      summary: Get units of measure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Units of measure.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type: string
+          nullable: true
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+    InventoryItemsResponse:
+      type: object
+      properties:
+        InventoryItems:
+          type: array
+          items:
+            type: object
+        IsSuccess:
+          type: boolean
+    GetItemsRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        properties:
+          itemIDs:
+            type: array
+            items:
+              type: string
+            nullable: true
+          Take:
+            type: integer
+          Skip:
+            type: integer
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: AUTH_TOKEN
+      description: Access token returned by GetToken, sent on every authenticated request in the AUTH_TOKEN header.

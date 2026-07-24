@@ -1,0 +1,96 @@
+openapi: 3.0.1
+info:
+  title: MarketMan API V3 Accounts Docs API
+  description: 'MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.'
+  termsOfService: https://www.marketman.com/
+  contact:
+    name: MarketMan
+    url: https://www.marketman.com/
+  version: '3.0'
+servers:
+- url: https://api.marketman.com/v3
+  description: MarketMan API V3 production base URL
+security:
+- AuthToken: []
+tags:
+- name: Docs
+  description: Invoices and accounting documents.
+paths:
+  /buyers/docs/GetDocsByDocDate:
+    post:
+      operationId: getDocsByDocDate
+      tags:
+      - Docs
+      summary: Get invoices/documents by document date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateRangeRequest'
+      responses:
+        '200':
+          description: Documents within the date range.
+          content:
+            application/json:
+              schema:
+                type: object
+  /buyers/docs/SetDocsExported:
+    post:
+      operationId: setDocsExported
+      tags:
+      - Docs
+      summary: Mark documents as exported
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerRequest'
+      responses:
+        '200':
+          description: Result of the export-flag update.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type: string
+          nullable: true
+    DateRangeRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - DateTimeFromUTC
+        - DateTimeToUTC
+        properties:
+          DateTimeFromUTC:
+            type: string
+            description: Start of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+            example: 2025/02/18 00:00:00
+          DateTimeToUTC:
+            type: string
+            description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+            example: 2025/02/20 23:59:59
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: AUTH_TOKEN
+      description: Access token returned by GetToken, sent on every authenticated request in the AUTH_TOKEN header.

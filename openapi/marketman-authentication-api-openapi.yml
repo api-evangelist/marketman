@@ -1,0 +1,83 @@
+openapi: 3.0.1
+info:
+  title: MarketMan API V3 Accounts Authentication API
+  description: 'MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.'
+  termsOfService: https://www.marketman.com/
+  contact:
+    name: MarketMan
+    url: https://www.marketman.com/
+  version: '3.0'
+servers:
+- url: https://api.marketman.com/v3
+  description: MarketMan API V3 production base URL
+security:
+- AuthToken: []
+tags:
+- name: Authentication
+  description: Token acquisition and token status.
+paths:
+  /buyers/auth/GetToken:
+    post:
+      operationId: getToken
+      tags:
+      - Authentication
+      summary: Obtain an access token
+      description: Exchanges an APIKey and APIPassword for an access Token used in the AUTH_TOKEN header on all subsequent requests.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTokenRequest'
+      responses:
+        '200':
+          description: Authentication result with a token on success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTokenResponse'
+  /buyers/auth/GetTokenDetails:
+    post:
+      operationId: getTokenDetails
+      tags:
+      - Authentication
+      summary: Get details about the current token
+      responses:
+        '200':
+          description: Token details.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    GetTokenResponse:
+      type: object
+      properties:
+        Token:
+          type: string
+          description: Access token to send in the AUTH_TOKEN header.
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type: string
+          nullable: true
+    GetTokenRequest:
+      type: object
+      required:
+      - APIKey
+      - APIPassword
+      properties:
+        APIKey:
+          type: string
+          description: API key issued by MarketMan support.
+        APIPassword:
+          type: string
+          description: API password issued by MarketMan support.
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: AUTH_TOKEN
+      description: Access token returned by GetToken, sent on every authenticated request in the AUTH_TOKEN header.
