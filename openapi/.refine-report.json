@@ -1,0 +1,30 @@
+{
+  "provider": "marketman",
+  "sources": [
+    "marketman-accounts-api-openapi.yml",
+    "marketman-authentication-api-openapi.yml",
+    "marketman-deliveries-api-openapi.yml",
+    "marketman-docs-api-openapi.yml",
+    "marketman-inventory-api-openapi.yml",
+    "marketman-items-api-openapi.yml",
+    "marketman-orders-api-openapi.yml",
+    "marketman-recipes-api-openapi.yml",
+    "marketman-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "marketman-accounts-api-openapi.yml",
+    "marketman-authentication-api-openapi.yml",
+    "marketman-deliveries-api-openapi.yml",
+    "marketman-docs-api-openapi.yml",
+    "marketman-inventory-api-openapi.yml",
+    "marketman-items-api-openapi.yml",
+    "marketman-orders-api-openapi.yml",
+    "marketman-recipes-api-openapi.yml",
+    "marketman-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
