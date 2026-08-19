@@ -1,0 +1,449 @@
+{
+  "item": [
+    {
+      "id": "cb0703e0-df35-4e23-9864-6d21db60479c",
+      "name": "Inventory",
+      "description": {
+        "content": "Inventory items, counts, transfers, waste, and UOM types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0db0220-bbad-419d-b334-fb23a9ada900",
+          "name": "Get catalog/inventory items",
+          "request": {
+            "name": "Get catalog/inventory items",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "inventory",
+                "GetItems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"itemIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Take\": \"<integer>\",\n  \"Skip\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37a60f0b-3c72-46c0-8db6-7a692b0a0d64",
+              "name": "Inventory items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "inventory",
+                    "GetItems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"itemIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Take\": \"<integer>\",\n  \"Skip\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IsSuccess\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb9e6166-522e-4005-a84b-5a73bbe9815e",
+          "name": "Get inventory items for a buyer",
+          "request": {
+            "name": "Get inventory items for a buyer",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "inventory",
+                "GetInventoryItems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a20a1c1a-aeb2-450e-92db-bf7dc9ed3b1d",
+              "name": "Inventory items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "inventory",
+                    "GetInventoryItems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IsSuccess\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fab261aa-8a05-4cba-a7c0-ea093c5b8df0",
+          "name": "Submit an inventory count",
+          "request": {
+            "name": "Submit an inventory count",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "inventory",
+                "SetInventoryCount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb6631af-37c2-43ca-bd0a-51efb9d9b7e9",
+              "name": "Result of the count submission.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "inventory",
+                    "SetInventoryCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IsSuccess\": true,\n  \"ErrorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e88881d3-68e7-457f-a100-a54faa20573e",
+          "name": "Get units of measure",
+          "request": {
+            "name": "Get units of measure",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "inventory",
+                "GetUOMTypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85418ba4-f840-4f1c-9ed6-ac4001fa51ec",
+              "name": "Units of measure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "inventory",
+                    "GetUOMTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.marketman.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "23c92358-e335-4203-8481-3180ca4a8f5b",
+    "name": "MarketMan API V3 Accounts Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.\n\nContact Support:\n Name: MarketMan",
+      "type": "text/plain"
+    }
+  }
+}

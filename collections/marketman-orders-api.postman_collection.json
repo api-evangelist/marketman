@@ -1,0 +1,449 @@
+{
+  "item": [
+    {
+      "id": "3f8b9040-d39c-4190-9e36-1d38569ec1ca",
+      "name": "Orders",
+      "description": {
+        "content": "Purchase orders and vendor catalog items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "047b5233-5f0d-4e2d-a998-165750a51cab",
+          "name": "Get purchase orders by delivery date",
+          "request": {
+            "name": "Get purchase orders by delivery date",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "orders",
+                "GetOrdersByDeliveryDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"DateTimeFromUTC\": \"<string>\",\n  \"DateTimeToUTC\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0de16100-1746-4630-94d6-a2b4d06076a9",
+              "name": "Orders within the delivery date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "orders",
+                    "GetOrdersByDeliveryDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7898491-6408-4438-bdeb-dd7f38646fe6",
+          "name": "Get purchase orders by sent date",
+          "request": {
+            "name": "Get purchase orders by sent date",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "orders",
+                "GetOrdersBySentDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"DateTimeFromUTC\": \"<string>\",\n  \"DateTimeToUTC\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bed5e128-a41b-4246-910d-1c7d2d8c778b",
+              "name": "Orders within the sent date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "orders",
+                    "GetOrdersBySentDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"DateTimeFromUTC\": \"2025/02/18 00:00:00\",\n  \"DateTimeToUTC\": \"2025/02/20 23:59:59\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee561741-8574-4fb1-80d6-a8a0fee994a4",
+          "name": "Get a vendor catalog",
+          "request": {
+            "name": "Get a vendor catalog",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "orders",
+                "GetCatalogItems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"VendorGuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "158bfccd-c0aa-42e1-923c-9609e79ca13c",
+              "name": "Catalog items for a vendor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "orders",
+                    "GetCatalogItems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"VendorGuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "557f715d-f63a-4600-8b73-26ecb01cdbc8",
+          "name": "Create a purchase order",
+          "request": {
+            "name": "Create a purchase order",
+            "description": {},
+            "url": {
+              "path": [
+                "buyers",
+                "orders",
+                "CreateOrder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"VendorGuid\": \"<string>\",\n  \"catalogItems\": [\n    {\n      \"CatalogItemCode\": \"<string>\",\n      \"Quantity\": \"<number>\"\n    },\n    {\n      \"CatalogItemCode\": \"<string>\",\n      \"Quantity\": \"<number>\"\n    }\n  ],\n  \"OrderStatus\": \"<string>\",\n  \"deliveryDateUTC\": \"<string>\",\n  \"sentDateUTC\": \"<string>\",\n  \"BuyerUserGuid\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1ea737e-033b-42eb-baca-ec991b3810f3",
+              "name": "Result of the order creation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "orders",
+                    "CreateOrder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerGuid\": \"<string>\",\n  \"VendorGuid\": \"<string>\",\n  \"catalogItems\": [\n    {\n      \"CatalogItemCode\": \"<string>\",\n      \"Quantity\": \"<number>\"\n    },\n    {\n      \"CatalogItemCode\": \"<string>\",\n      \"Quantity\": \"<number>\"\n    }\n  ],\n  \"OrderStatus\": \"Sent\",\n  \"deliveryDateUTC\": \"2020/05/06 00:00:00\",\n  \"sentDateUTC\": \"2020/05/06 00:00:00\",\n  \"BuyerUserGuid\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"IsSuccess\": false,\n  \"ErrorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.marketman.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ceab28b-00bd-42e6-8ffd-ed755f3bf845",
+    "name": "MarketMan API V3 Accounts Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.\n\nContact Support:\n Name: MarketMan",
+      "type": "text/plain"
+    }
+  }
+}

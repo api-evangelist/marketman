@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "dd09bbfc-babe-4a98-9a3c-6a36dee873c5",
+      "name": "Accounts",
+      "description": {
+        "content": "Authorised buyer accounts and connected POS systems.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fbb51dff-44d8-481a-ad2d-783efd4ecf02",
+          "name": "List authorised buyer accounts",
+          "request": {
+            "name": "List authorised buyer accounts",
+            "description": {
+              "content": "Returns the buyer accounts (each identified by a Guid) that the authenticated API credentials may operate on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "buyers",
+                "partneraccounts",
+                "GetAuthorisedAccounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32e58d26-5db6-4a5a-ba47-07806881e439",
+              "name": "Authorised accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buyers",
+                    "partneraccounts",
+                    "GetAuthorisedAccounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Buyers\": [\n    {\n      \"Guid\": \"string\",\n      \"Name\": \"string\"\n    },\n    {\n      \"Guid\": \"string\",\n      \"Name\": \"string\"\n    }\n  ],\n  \"IsSuccess\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.marketman.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5abb3bd-0c56-4bdd-9f00-25653de1fba5",
+    "name": "MarketMan API V3 Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.\n\nContact Support:\n Name: MarketMan",
+      "type": "text/plain"
+    }
+  }
+}

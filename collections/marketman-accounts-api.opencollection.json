@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarketMan API V3 Accounts API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTH_TOKEN",
+      "value": "{{AUTH_TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List authorised buyer accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/partneraccounts/GetAuthorisedAccounts"
+          },
+          "docs": "Returns the buyer accounts (each identified by a Guid) that the authenticated API credentials may operate on."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

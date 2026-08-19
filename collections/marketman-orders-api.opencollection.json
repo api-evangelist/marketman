@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarketMan API V3 Accounts Orders API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTH_TOKEN",
+      "value": "{{AUTH_TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get purchase orders by delivery date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/GetOrdersByDeliveryDate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get purchase orders by delivery date"
+        },
+        {
+          "info": {
+            "name": "Get purchase orders by sent date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/GetOrdersBySentDate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get purchase orders by sent date"
+        },
+        {
+          "info": {
+            "name": "Get a vendor catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/GetCatalogItems",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a vendor catalog"
+        },
+        {
+          "info": {
+            "name": "Create a purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/orders/CreateOrder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a purchase order"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

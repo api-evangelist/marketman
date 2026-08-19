@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarketMan API V3 Accounts Authentication API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTH_TOKEN",
+      "value": "{{AUTH_TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/auth/GetToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges an APIKey and APIPassword for an access Token used in the AUTH_TOKEN header on all subsequent requests."
+        },
+        {
+          "info": {
+            "name": "Get details about the current token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/auth/GetTokenDetails"
+          },
+          "docs": "Get details about the current token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

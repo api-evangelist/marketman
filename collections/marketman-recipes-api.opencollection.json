@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarketMan API V3 Accounts Recipes API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTH_TOKEN",
+      "value": "{{AUTH_TOKEN}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get menu items (recipes)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetMenuItems",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get menu items (recipes)"
+        },
+        {
+          "info": {
+            "name": "Get menu item availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetMenuItemsAvailability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get menu item availability"
+        },
+        {
+          "info": {
+            "name": "Get menu profitability report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.marketman.com/v3/buyers/inventory/GetMenuProfitability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get menu profitability report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
