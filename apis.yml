@@ -7,6 +7,18 @@ description: MarketMan is a cloud-based restaurant inventory and purchasing mana
   counts, supplier catalogs, purchase orders, deliveries, invoices, recipes/menu costing,
   and POS sales. The MarketMan API V3 is a JSON REST API with separate Buyer and Vendor
   surfaces, token authentication, and webhooks for order events.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
