@@ -196,6 +196,9 @@ apis:
   - type: OpenCollection
     url: collections/marketman.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/marketman-capability-edges.yml
+  name: MarketMan Business Capability Map
 - type: AgenticAccess
   url: agentic-access/marketman-agentic-access.yml
 - type: DomainSecurity

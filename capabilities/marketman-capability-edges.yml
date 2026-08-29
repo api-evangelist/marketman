@@ -1,0 +1,34 @@
+slug: marketman
+provider: MarketMan
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Orders
+  spec_file: marketman-orders-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.88
+  evidence: '"Get purchase orders by delivery date", "Create a purchase order", "Get a vendor catalog"'
+  reason: Operations create and retrieve purchase orders against vendor catalogues, which is purchase
+    order management within procurement.
+- tag: Inventory
+  spec_file: marketman-inventory-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.78
+  evidence: '"Get inventory items for a buyer", "Submit an inventory count", "Get units of measure"'
+  reason: Operations read inventory item stock records and submit physical inventory counts for restaurant
+    back-of-house stock, clearly inventory management. L2 left blank because the surface spans both item/stock
+    records and counting.
