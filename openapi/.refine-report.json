@@ -1,15 +1,7 @@
 {
   "provider": "marketman",
   "sources": [
-    "marketman-accounts-api-openapi.yml",
-    "marketman-authentication-api-openapi.yml",
-    "marketman-deliveries-api-openapi.yml",
-    "marketman-docs-api-openapi.yml",
-    "marketman-inventory-api-openapi.yml",
-    "marketman-items-api-openapi.yml",
-    "marketman-orders-api-openapi.yml",
-    "marketman-recipes-api-openapi.yml",
-    "marketman-webhooks-api-openapi.yml"
+    "_original/marketman-openapi.yml"
   ],
   "outputs": [
     "marketman-accounts-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "marketman-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "marketman-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-deliveries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-docs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-inventory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-recipes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "marketman-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

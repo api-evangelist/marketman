@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MarketMan API V3 Accounts Authentication API
-  description: 'MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals. The V3 API exposes separate Buyer and Vendor surfaces for inventory, items, vendors, purchase orders, invoices/docs, deliveries, recipes/menu costing, POS sales, and webhooks. All operations are HTTP POST that accept and return JSON. Authentication is token-based: call /v3/buyers/auth/GetToken (or the vendor equivalent) with an APIKey and APIPassword to obtain a Token, then send that token on every subsequent request in the AUTH_TOKEN header. Endpoints, request fields, and response shapes here reflect the publicly published MarketMan API V3 Postman documentation; field-level detail not documented publicly is left unconstrained.'
+  title: MarketMan API V3 Authentication API
+  description: MarketMan provides a JSON REST API for integration with third-party applications such as accounting, ERP, e-commerce, and self-service portals.
   termsOfService: https://www.marketman.com/
   contact:
     name: MarketMan
@@ -61,8 +61,9 @@ components:
         IsSuccess:
           type: boolean
         ErrorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
     GetTokenRequest:
       type: object
       required:
