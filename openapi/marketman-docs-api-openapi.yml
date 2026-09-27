@@ -56,6 +56,15 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
     DateRangeRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -80,15 +89,6 @@ components:
         BuyerGuid:
           type: string
           description: GUID identifying the buyer account to operate on.
-    GenericResponse:
-      type: object
-      properties:
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
   securitySchemes:
     AuthToken:
       type: apiKey

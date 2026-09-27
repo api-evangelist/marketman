@@ -103,14 +103,6 @@ components:
             type: object
         IsSuccess:
           type: boolean
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
     GetItemsRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -135,6 +127,14 @@ components:
           type:
           - string
           - 'null'
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
   securitySchemes:
     AuthToken:
       type: apiKey

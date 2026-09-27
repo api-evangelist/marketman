@@ -94,29 +94,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    CreateWebhookRequest:
-      allOf:
-      - $ref: '#/components/schemas/BuyerRequest'
-      - type: object
-        required:
-        - Type
-        - URL
-        properties:
-          Type:
-            type: string
-            description: Event type to subscribe to, e.g. "Order create".
-            example: Order create
-          URL:
-            type: string
-            description: Destination URL that will receive webhook payloads.
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
     DeleteWebhookRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -136,6 +113,29 @@ components:
           type:
           - string
           - 'null'
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+    CreateWebhookRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - Type
+        - URL
+        properties:
+          Type:
+            type: string
+            description: Event type to subscribe to, e.g. "Order create".
+            example: Order create
+          URL:
+            type: string
+            description: Destination URL that will receive webhook payloads.
   securitySchemes:
     AuthToken:
       type: apiKey

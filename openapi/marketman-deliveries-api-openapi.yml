@@ -91,14 +91,6 @@ components:
             type: string
             description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
             example: 2025/02/20 23:59:59
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
     GenericResponse:
       type: object
       properties:
@@ -108,6 +100,14 @@ components:
           type:
           - string
           - 'null'
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
   securitySchemes:
     AuthToken:
       type: apiKey
