@@ -37,14 +37,6 @@ paths:
                 $ref: '#/components/schemas/VendorsResponse'
 components:
   schemas:
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
     VendorsResponse:
       type: object
       properties:
@@ -54,6 +46,14 @@ components:
             type: object
         IsSuccess:
           type: boolean
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
   securitySchemes:
     AuthToken:
       type: apiKey

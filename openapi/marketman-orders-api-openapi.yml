@@ -94,6 +94,15 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
     DateRangeRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -117,6 +126,14 @@ components:
           type: string
         Quantity:
           type: number
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
     CreateOrderRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -144,23 +161,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/OrderCatalogItem'
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
-    GenericResponse:
-      type: object
-      properties:
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
     CatalogItemsRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'

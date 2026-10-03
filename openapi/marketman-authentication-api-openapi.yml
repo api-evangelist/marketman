@@ -52,18 +52,6 @@ paths:
                 type: object
 components:
   schemas:
-    GetTokenResponse:
-      type: object
-      properties:
-        Token:
-          type: string
-          description: Access token to send in the AUTH_TOKEN header.
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
     GetTokenRequest:
       type: object
       required:
@@ -76,6 +64,18 @@ components:
         APIPassword:
           type: string
           description: API password issued by MarketMan support.
+    GetTokenResponse:
+      type: object
+      properties:
+        Token:
+          type: string
+          description: Access token to send in the AUTH_TOKEN header.
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     AuthToken:
       type: apiKey

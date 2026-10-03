@@ -94,6 +94,15 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
     DeleteWebhookRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -104,15 +113,6 @@ components:
           Guid:
             type: string
             description: GUID of the webhook to delete.
-    GenericResponse:
-      type: object
-      properties:
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
     BuyerRequest:
       type: object
       required:

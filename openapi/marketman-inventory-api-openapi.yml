@@ -94,15 +94,6 @@ paths:
                 type: object
 components:
   schemas:
-    InventoryItemsResponse:
-      type: object
-      properties:
-        InventoryItems:
-          type: array
-          items:
-            type: object
-        IsSuccess:
-          type: boolean
     GetItemsRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -127,6 +118,15 @@ components:
           type:
           - string
           - 'null'
+    InventoryItemsResponse:
+      type: object
+      properties:
+        InventoryItems:
+          type: array
+          items:
+            type: object
+        IsSuccess:
+          type: boolean
     BuyerRequest:
       type: object
       required:
