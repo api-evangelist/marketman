@@ -94,46 +94,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    GenericResponse:
-      type: object
-      properties:
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
-    DateRangeRequest:
-      allOf:
-      - $ref: '#/components/schemas/BuyerRequest'
-      - type: object
-        required:
-        - DateTimeFromUTC
-        - DateTimeToUTC
-        properties:
-          DateTimeFromUTC:
-            type: string
-            description: Start of the range in UTC, format yyyy/MM/dd HH:mm:ss.
-            example: 2025/02/18 00:00:00
-          DateTimeToUTC:
-            type: string
-            description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
-            example: 2025/02/20 23:59:59
-    OrderCatalogItem:
-      type: object
-      properties:
-        CatalogItemCode:
-          type: string
-        Quantity:
-          type: number
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
     CreateOrderRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -161,6 +121,46 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/OrderCatalogItem'
+    OrderCatalogItem:
+      type: object
+      properties:
+        CatalogItemCode:
+          type: string
+        Quantity:
+          type: number
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+    DateRangeRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - DateTimeFromUTC
+        - DateTimeToUTC
+        properties:
+          DateTimeFromUTC:
+            type: string
+            description: Start of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+            example: 2025/02/18 00:00:00
+          DateTimeToUTC:
+            type: string
+            description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
+            example: 2025/02/20 23:59:59
     CatalogItemsRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'

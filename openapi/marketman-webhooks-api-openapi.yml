@@ -103,6 +103,21 @@ components:
           type:
           - string
           - 'null'
+    CreateWebhookRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - Type
+        - URL
+        properties:
+          Type:
+            type: string
+            description: Event type to subscribe to, e.g. "Order create".
+            example: Order create
+          URL:
+            type: string
+            description: Destination URL that will receive webhook payloads.
     DeleteWebhookRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -121,21 +136,6 @@ components:
         BuyerGuid:
           type: string
           description: GUID identifying the buyer account to operate on.
-    CreateWebhookRequest:
-      allOf:
-      - $ref: '#/components/schemas/BuyerRequest'
-      - type: object
-        required:
-        - Type
-        - URL
-        properties:
-          Type:
-            type: string
-            description: Event type to subscribe to, e.g. "Order create".
-            example: Order create
-          URL:
-            type: string
-            description: Destination URL that will receive webhook payloads.
   securitySchemes:
     AuthToken:
       type: apiKey
