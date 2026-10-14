@@ -1,0 +1,62 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- clover/integrations/clover-integration-edges.yml
+- olo/integrations/olo-integration-edges.yml
+- toast/integrations/toast-integration-edges.yml
+source:
+- clover/integrations/clover-integration-edges.yml
+- olo/integrations/olo-integration-edges.yml
+- toast/integrations/toast-integration-edges.yml
+edges:
+- partner_name: Clover (own)
+  partner: clover
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.clover.com/appmarket/apps/RXSCF1GWBA1YY
+  mirror_of: clover/integrations/clover-integration-edges.yml
+  apps:
+  - MarketMan - Restaurant Inventory
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: QUICK_SERVICE_RESTAURANT
+- partner_name: Olo (own)
+  partner: olo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.olo.com/partners/marketman
+  mirror_of: olo/integrations/olo-integration-edges.yml
+  apps:
+  - MarketMan
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Data Analytics
+- partner_name: Toast (own)
+  partner: toast
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://pos.toasttab.com/partners/directory/marketman
+  mirror_of: toast/integrations/toast-integration-edges.yml
+  apps:
+  - Marketman
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Inventory
