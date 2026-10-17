@@ -94,6 +94,23 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    OrderCatalogItem:
+      type: object
+      properties:
+        CatalogItemCode:
+          type: string
+        Quantity:
+          type: number
+    CatalogItemsRequest:
+      allOf:
+      - $ref: '#/components/schemas/BuyerRequest'
+      - type: object
+        required:
+        - VendorGuid
+        properties:
+          VendorGuid:
+            type: string
+            description: GUID identifying the vendor whose catalog to retrieve.
     CreateOrderRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -121,30 +138,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/OrderCatalogItem'
-    OrderCatalogItem:
-      type: object
-      properties:
-        CatalogItemCode:
-          type: string
-        Quantity:
-          type: number
-    GenericResponse:
-      type: object
-      properties:
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
     DateRangeRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -161,16 +154,23 @@ components:
             type: string
             description: End of the range in UTC, format yyyy/MM/dd HH:mm:ss.
             example: 2025/02/20 23:59:59
-    CatalogItemsRequest:
-      allOf:
-      - $ref: '#/components/schemas/BuyerRequest'
-      - type: object
-        required:
-        - VendorGuid
-        properties:
-          VendorGuid:
-            type: string
-            description: GUID identifying the vendor whose catalog to retrieve.
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     AuthToken:
       type: apiKey

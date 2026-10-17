@@ -94,15 +94,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    GenericResponse:
-      type: object
-      properties:
-        IsSuccess:
-          type: boolean
-        ErrorMessage:
-          type:
-          - string
-          - 'null'
     CreateWebhookRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -118,6 +109,23 @@ components:
           URL:
             type: string
             description: Destination URL that will receive webhook payloads.
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
+    GenericResponse:
+      type: object
+      properties:
+        IsSuccess:
+          type: boolean
+        ErrorMessage:
+          type:
+          - string
+          - 'null'
     DeleteWebhookRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -128,14 +136,6 @@ components:
           Guid:
             type: string
             description: GUID of the webhook to delete.
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
   securitySchemes:
     AuthToken:
       type: apiKey

@@ -75,6 +75,14 @@ paths:
                 type: object
 components:
   schemas:
+    BuyerRequest:
+      type: object
+      required:
+      - BuyerGuid
+      properties:
+        BuyerGuid:
+          type: string
+          description: GUID identifying the buyer account to operate on.
     GetMenuItemsRequest:
       allOf:
       - $ref: '#/components/schemas/BuyerRequest'
@@ -88,14 +96,6 @@ components:
             - 'null'
             items:
               type: string
-    BuyerRequest:
-      type: object
-      required:
-      - BuyerGuid
-      properties:
-        BuyerGuid:
-          type: string
-          description: GUID identifying the buyer account to operate on.
   securitySchemes:
     AuthToken:
       type: apiKey
