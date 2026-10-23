@@ -5,11 +5,41 @@ checked:
 - https://github.com/meltano/hub
 - olo/integrations/olo-integration-edges.yml
 - toast/integrations/toast-integration-edges.yml
+- xero/integrations/xero-integration-edges.yml
 source:
 - clover/integrations/clover-integration-edges.yml
 - olo/integrations/olo-integration-edges.yml
 - toast/integrations/toast-integration-edges.yml
 edges:
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-marketman--mashey
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: MarketMan
+    matched_domain: marketman.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-marketman--mashey
+    maintenance_status:
+    - unknown
+    quality:
+    - unknown
+    builder: 'community (Meltano Hub variant maintainers: mashey)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 - partner_name: Clover (own)
   partner: clover
   partner_match: mirror
@@ -61,32 +91,20 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Inventory
-- partner_name: Meltano
-  partner: meltano
-  partner_match: aggregator
+- partner_name: Xero (own)
+  partner: xero
+  partner_match: mirror
+  mirror_match: domain
   type: marketplace
-  marketplace: meltano-hub
-  channel: elt-connector
-  relationship: ipaas-bridge
+  relationship: platform-app
   direction: third-party
-  evidence: https://hub.meltano.com/extractors/tap-marketman--mashey
-  category: null
-  contract_reference:
-    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
-    spec_file: null
-    role: elt-connector:meltano-hub
-    registered_name: MarketMan
-    matched_domain: marketman.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    plugins:
-    - tap-marketman--mashey
-    maintenance_status:
-    - unknown
-    quality:
-    - unknown
-    builder: 'community (Meltano Hub variant maintainers: mashey)'
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.xero.com/nz/app/marketman
+  mirror_of: xero/integrations/xero-integration-edges.yml
+  apps:
+  - MarketMan
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Inventory
