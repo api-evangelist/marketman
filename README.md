@@ -1,4 +1,4 @@
-# MarketMan (marketman)
+# MarketMan
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,173 +66,131 @@
 
 MarketMan is a cloud-based restaurant inventory and purchasing management platform (part of the Meal Ticket portfolio) for back-of-house operations - inventory counts, supplier catalogs, purchase orders, deliveries, invoices, recipes/menu costing, and POS sales. The MarketMan API V3 is a JSON REST API with separate Buyer and Vendor surfaces, token authentication, and webhooks for order events.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/marketman/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/marketman/refs/heads/main/apis.yml)
+**Areas:** Restaurant · Inventory · Purchasing · Supply Chain · Food Service
 
-## Tags
+## MarketMan on APIs.io
 
-- Restaurant
-- Inventory
-- Purchasing
-- Supply Chain
-- Food Service
+Everything profiled for MarketMan is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/marketman/](https://apis.io/providers/marketman/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [MarketMan Accounts API](https://apis.io/apis/marketman/marketman-accounts-api/) — Authorised buyer accounts and connected POS systems.
+- [MarketMan Authentication API](https://apis.io/apis/marketman/marketman-authentication-api/) — Token acquisition and token status.
+- [MarketMan Deliveries API](https://apis.io/apis/marketman/marketman-deliveries-api/) — Vendor delivery notes and document submission.
+- [MarketMan Docs API](https://apis.io/apis/marketman/marketman-docs-api/) — Invoices and accounting documents.
+- [MarketMan Inventory API](https://apis.io/apis/marketman/marketman-inventory-api/) — Inventory items, counts, transfers, waste, and UOM types.
+- [MarketMan Items API](https://apis.io/apis/marketman/marketman-items-api/) — Vendors connected to a buyer account.
+- [MarketMan Orders API](https://apis.io/apis/marketman/marketman-orders-api/) — Purchase orders and vendor catalog items.
+- [MarketMan Recipes API](https://apis.io/apis/marketman/marketman-recipes-api/) — Menu items, availability, and menu profitability.
+- [MarketMan Webhooks API](https://apis.io/apis/marketman/marketman-webhooks-api/) — Webhook subscriptions for order and account events.
 
-## APIs
+### Published properties
 
-### MarketMan Inventory & Items API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Buyer inventory endpoints for retrieving items, preps, inventory items, menu items and UOM types, setting inventory counts, and reading transfers, waste events, and production events.
+#### Agentic access (1)
 
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Marketman Agentic Access](https://apis.io/agentic-access/marketman/marketman-agentic-access/)
 
-- Inventory
-- Items
-- Menu Items
+#### Collections (10)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [MarketMan API V3](https://apis.io/collections/marketman/open-marketman/)
+- [MarketMan API V3 Accounts API](https://apis.io/collections/marketman/open-marketman-accounts-api/)
+- [MarketMan API V3 Accounts Authentication API](https://apis.io/collections/marketman/open-marketman-authentication-api/)
+- [MarketMan API V3 Accounts Deliveries API](https://apis.io/collections/marketman/open-marketman-deliveries-api/)
+- [MarketMan API V3 Accounts Docs API](https://apis.io/collections/marketman/open-marketman-docs-api/)
+- [MarketMan API V3 Accounts Inventory API](https://apis.io/collections/marketman/open-marketman-inventory-api/)
+- [MarketMan API V3 Accounts Items API](https://apis.io/collections/marketman/open-marketman-items-api/)
+- [MarketMan API V3 Accounts Orders API](https://apis.io/collections/marketman/open-marketman-orders-api/)
+- [MarketMan API V3 Accounts Recipes API](https://apis.io/collections/marketman/open-marketman-recipes-api/)
+- [MarketMan API V3 Accounts Webhooks API](https://apis.io/collections/marketman/open-marketman-webhooks-api/)
 
-### MarketMan Vendors API
+#### Security (2)
 
-Buyer endpoint for listing the vendors (suppliers) connected to an account, plus the vendor-side products, assortments, price levels, and customers surfaces used by suppliers integrating with MarketMan.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
+- [Marketman Authentication](https://apis.io/security/marketman/marketman-authentication/)
+- [Marketman Domain Security](https://apis.io/security/marketman/marketman-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Vendors
-- Suppliers
-- Catalog
+Published plans, tiers and prices.
 
-#### Properties
+- [Marketman Plans Pricing](https://apis.io/plans/marketman/marketman-plans-pricing/)
 
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### MarketMan Purchase Orders API
+Published request limits.
 
-Buyer orders endpoints to read orders by delivery date or sent date, list vendor catalog items, and create purchase orders against a vendor catalog.
+- [Marketman Rate Limits](https://apis.io/rate-limits/marketman/marketman-rate-limits/)
 
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Purchase Orders
-- Orders
-- Procurement
+- [Marketman Finops](https://apis.io/finops/marketman/marketman-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### MarketMan Invoices & Docs API
-
-Buyer docs endpoints to retrieve invoices and accounting documents by document date and to mark documents as exported for downstream accounting/ERP reconciliation.
-
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
-
-#### Tags
-
-- Invoices
-- Documents
-- Accounting
-
-#### Properties
-
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### MarketMan Deliveries API
-
-Vendor-side delivery note endpoints (GetDeliveryNotesByDate, ValidateDoc, SetDocs) used to submit and retrieve delivery documents tied to fulfilled orders.
-
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
-
-#### Tags
-
-- Deliveries
-- Delivery Notes
-- Receiving
-
-#### Properties
-
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### MarketMan Recipes & Menu Profitability API
-
-Menu and recipe costing endpoints - menu items, menu item availability, and menu profitability reporting - that surface recipe-driven food cost and margin data for an account.
-
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
-
-#### Tags
-
-- Recipes
-- Menu Costing
-- Profitability
-
-#### Properties
-
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### MarketMan Webhooks API
-
-Buyer and vendor webhook management - create, list, and delete webhooks and look up webhook events by order - to subscribe to order-create and related events.
-
-- **Human URL:** [https://api-doc.marketman.com/](https://api-doc.marketman.com/)
-- **Base URL:** `https://api.marketman.com/v3`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://api-doc.marketman.com/)
-- [OpenAPI](openapi/marketman-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/marketman.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/marketman.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/marketman)
 - [Website](https://www.marketman.com)
 - [Documentation](https://api-doc.marketman.com/)
-- [Plans](plans/marketman-plans-pricing.yml)
-- [Rate Limits](rate-limits/marketman-rate-limits.yml)
-- [Fin Ops](finops/marketman-finops.yml)
+- [Blog](https://www.marketman.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 24.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 44.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/marketman/](https://apis.io/providers/marketman/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for MarketMan: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/marketman/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
